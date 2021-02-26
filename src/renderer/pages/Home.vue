@@ -17,7 +17,8 @@
       </div>
       <div class="drag title"><span class="no-drag">{{active.filename}}</span></div>
       <div class="handle drag right">
-        <i class="el-icon-film no-drag" @click="drawer = true"></i>
+        <span class="handle-icon"><i class="el-icon-upload2 no-drag" @click="selectFile"></i></span>
+        <span class="handle-icon"><i class="el-icon-film no-drag" @click="drawer = true"></i></span>
       </div>
     </div>
     <el-drawer
@@ -69,6 +70,7 @@ export default {
       });
       if (files && files.length) {
         localStore.set('files', files[0])
+        this.files = getJsonFiles(localStore.get('files', ''))
       }
       
     },
@@ -175,6 +177,11 @@ body { font-family: 'Source Sans Pro', sans-serif; }
       color: #409eff;
     }
   }
+}
+
+.handle-icon {
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 .wrapper {
