@@ -56,6 +56,7 @@ export default {
     async play(_file) {
       this.player.src(_file.uri)
       this.player.defaultPlaybackRate(localStore.get('playbackRate', 1))
+      this.player.play()
       this.active = _file
       localStore.set('active', _file)
     },
@@ -78,7 +79,7 @@ export default {
   mounted() {
     const videoPlayerEle = this.$refs.player;
     this.player = videojs(videoPlayerEle, {
-      autoplay: true,
+      // autoplay: true,
       playbackRates: [0.5, 1, 1.5, 2],
     });
     this.player.defaultPlaybackRate(localStore.get('playbackRate', 1))
